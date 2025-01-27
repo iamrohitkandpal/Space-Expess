@@ -110,6 +110,10 @@ select {
   margin-inline: auto;
   max-width: 80rem;
 }
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
+  outline: 1px solid red;
+}
 .sr-only {
   position: absolute;
   width: 1px;
@@ -196,3 +200,31 @@ select {
 .fs-900, .fs-800, .fs-700, .fs-600 {
   line-height: 1.1;
 }
+
+
+.numbered-title {
+  font-family: var(--ff-sans-cond);
+  font-size: var(--fs-500);
+  text-transform: uppercase;
+  letter-spacing: 4.72px;
+}
+
+.numbered-title span {
+  margin-right: 0.5rem;
+  font-weight: 700;
+  color: hsl(var(--clr-white) / 0.25);
+}
+
+
+/* ------------------- */
+/* Components          */
+/* ------------------- */
+
+.dot-pattern {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+
