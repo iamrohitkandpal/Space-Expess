@@ -719,3 +719,24 @@ body {
     align-self: flex-end;
   } */
 }
+
+/* transition effects */
+.transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.grid-container--destination,
+.grid-container--crew {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
