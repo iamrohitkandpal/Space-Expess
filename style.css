@@ -503,6 +503,10 @@ body {
   background-position: bottom center;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /* home */
 .home {
   background-image: url(./assets/home/background-home-mobile.jpg);
@@ -591,6 +595,7 @@ body {
 .grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
 }
 
 .grid-container--destination > .tab-list {
