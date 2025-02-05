@@ -20,6 +20,7 @@ fetch("./data.json")
     data = jsonData;
     initializeTabs();
     initializeDots();
+    initializeTechnology(); // Add this new function call
   })
   .catch((error) => console.error("Error fetching data:", error));
 
@@ -112,4 +113,59 @@ function initializeDots() {
         updateCrew(index);
       });
     });
+}
+
+function initializeTechnology() {
+  const technologyButtons = document.querySelectorAll('.number-indicators button');
+  if (!technologyButtons.length) return; // Exit if not on technology page
+
+  function updateTechnology(index) {
+    const technology = data.technology[index];
+    if (!technology) return;
+
+    // Get all required elements
+    const container = document.querySelector('.grid-container--technology');
+    const technologyImage = document.querySelector('.technology-image img');
+    const technologyImageSource = document.querySelector('.technology-image source');
+    const technologyTitle = document.querySelector('.technology-details .fs-700');
+    const technologyDescription = document.querySelector('.technology-details p:last-child');
+
+    // Update active button
+    technologyButtons.forEach(btn => {
+      btn.setAttribute('aria-selected', 'false');
+    });
+    technologyButtons[index].setAttribute('aria-selected', 'true');
+    
+    // Update content with fade effect
+    container.classList.add('fade-out');
+    
+    setTimeout(() => {
+      // Update image
+      if (technologyImageSource && technologyImage) {
+        technologyImageSource.srcset = technology.images.portrait;
+        technologyImage.src = technology.images.landscape;
+        technologyImage.alt = technology.name;
+      }
+      
+      // Update text
+      if (technologyTitle) {
+        technologyTitle.textContent = technology.name;
+      }
+      if (technologyDescription) {
+        technologyDescription.textContent = technology.description;
+      }
+      
+      container.classList.remove('fade-out');
+    }, 500);
+  }
+
+  // Add click handlers to buttons
+  technologyButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      updateTechnology(index);
+    });
+  });
+
+  // Initialize first technology item
+  updateTechnology(0);
 }
