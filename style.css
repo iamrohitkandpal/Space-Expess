@@ -472,7 +472,7 @@ flow--space-small {
 .number-indicators {
   display: flex;
   gap: 1.25rem;
-  flex-direction: column;
+  flex-direction: row;  /* Changed from column to row */
 }
 
 .number-indicators > * {
@@ -591,7 +591,7 @@ body::-webkit-scrollbar {
   padding-inline: 1rem;
   padding-bottom: 4rem;
   opacity: 1;
-  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .grid-container p:not([class]) {
@@ -641,7 +641,7 @@ body::-webkit-scrollbar {
 /* crew layout */
 
 .grid-container--crew {
-  --flow-space: 2rem;
+  --flow-space: 1rem;
   grid-template-areas:
     "title"
     "image"
@@ -657,6 +657,7 @@ body::-webkit-scrollbar {
 
 .grid-container--crew > .dot-indicators {
   grid-area: tabs;
+  margin-bottom: 0;
 }
 
 .grid-container--crew > .crew-details {
@@ -669,7 +670,8 @@ body::-webkit-scrollbar {
 
 /* technology layout */
 .grid-container--technology {
-  --flow-space: 2rem;
+  padding-inline: 0;
+  --flow-space: 1rem;
   grid-template-areas:
     "title"
     "image"
@@ -690,6 +692,10 @@ body::-webkit-scrollbar {
   grid-area: content;
 }
 
+.technology-details {
+  padding-inline: 1.25rem;
+}
+
 @media (min-width: 35em) {
   .numbered-title {
     justify-self: start;
@@ -708,6 +714,10 @@ body::-webkit-scrollbar {
       "content"
       "tabs"
       "image";
+  }
+
+  .grid-container--technology > picture {
+    max-width: 100%;
   }
 }
 
@@ -763,8 +773,11 @@ body::-webkit-scrollbar {
 
   .grid-container--crew > picture {
     grid-column: span 2;
-    align-self: end;
-    max-width: 90%;
+    align-self: start;
+  }
+
+  .grid-container--crew > .dot-indicators {
+    margin-bottom: 8rem;
   }
 
   .grid-container--technology {
@@ -777,35 +790,30 @@ body::-webkit-scrollbar {
 
   .grid-container--technology > picture {
     grid-column: span 2;
+    max-width: 100%;
     align-self: end;
     justify-self: end;
   }
 
   .number-indicators {
-    flex-direction: column;
+    flex-direction: column;  /* Only change to column on desktop */
   }
 }
 
 /* transition effects */
 .transition {
   transition: opacity 0.5s ease-in-out;
-}
-
-.hidden {
-  opacity: 0;
-  /* transition: opacity 0.5s ease-in-out; */
+  opacity: 1;
 }
 
 .fade-out {
   opacity: 0;
-  /* transition: opacity 0.5s ease-in-out; */
 }
 
-.grid-container--destination,
-.grid-container--crew {
-  opacity: 1;
-  /* transition: opacity 0.5s ease-in-out; */
-}
+/* Remove or comment out the .hidden class if not needed elsewhere */
+/* .hidden {
+  opacity: 0;
+} */
 
 .technology-image img {
   max-width: 100%;
